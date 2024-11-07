@@ -1,5 +1,7 @@
 package com.amazon.ata.hashingset;
 
+import java.util.Objects;
+
 /**
  * An Amazon Delivery Drone.
  */
@@ -37,4 +39,18 @@ public class DeliveryDrone {
         return locationCode;
     }
 
+    @Override
+    public int hashCode() {
+        return registrationNumber.hashCode() + locationCode.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null || !obj.getClass().equals(DeliveryDrone.class)) {
+            return false;
+        }
+
+        DeliveryDrone drone = (DeliveryDrone) obj;
+        return registrationNumber.equals(drone.getRegistrationNumber()) && locationCode.equals(drone.getLocationCode());
+    }
 }
